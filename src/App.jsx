@@ -12,7 +12,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="intro">
       <h1>Healthcare simplified for you...</h1>
 
       <form onSubmit={handleSubmit}>

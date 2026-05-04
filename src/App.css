@@ -4,5 +4,11 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+  }
+
+  .intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
   }

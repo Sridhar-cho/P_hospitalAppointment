@@ -4,7 +4,7 @@ import "./Services.css";
 
 function Services() {
     const [token, setToken] = useState("");
-    const [service, setService] = useState("general");
+    const [service, setService] = useState("general consultation");
     const [time, setTime] = useState("morning");
     const [date, setDate] = useState("today");   
 
@@ -12,7 +12,8 @@ function Services() {
         setService(document.getElementById("service").value);
         setTime(document.getElementById("time").value);
         setDate(document.getElementById("date").value);
-        setToken(`Your token number is: ${Math.floor(Math.random() * 15) + 1} for ${service} on ${date} during ${time}.`);
+        // setToken(`Your token number is: ${Math.floor(Math.random() * 15) + 1} for ${service} on ${date} during ${time}.`);
+        setToken(`${Math.floor(Math.random() * 15) + 1}`);
     };
 
     return (
@@ -63,12 +64,12 @@ function Services() {
                     </form> 
                     <br />
                     <button className="book-token-button"
-                    onClick={() => handleOnClick()}>
+                    onClick={handleOnClick}>
                         Generate Token
                     </button>
                     <br />
                     <br />
-                    <div className="token-info">{token}</div>  
+                    {token &&(<div className="token-info" >Your token number is: {token} for {service} on {date} during {time}.</div>)}  
                     <br />
                 </div>
             </div>
