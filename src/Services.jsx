@@ -2,18 +2,26 @@ import NavBar from "./NavBar";
 import { useState } from "react";
 import "./Services.css";
 
-function Services() {
-    const [token, setToken] = useState("");
+function Services({name}) {
+    const [token, setToken] = useState(null);
     const [service, setService] = useState("general consultation");
     const [time, setTime] = useState("morning");
-    const [date, setDate] = useState("today");   
+    const [date, setDate] = useState("today");
+    const [booking, setBooking] = useState(null);
 
     const handleOnClick = () => {
-        setService(document.getElementById("service").value);
-        setTime(document.getElementById("time").value);
-        setDate(document.getElementById("date").value);
+        // setService(document.getElementById("service").value); //direct DOM manipulation is not recommended in React, instead we use state to manage form values
+        // setTime(document.getElementById("time").value);
+        // setDate(document.getElementById("date").value);
         // setToken(`Your token number is: ${Math.floor(Math.random() * 15) + 1} for ${service} on ${date} during ${time}.`);
-        setToken(`${Math.floor(Math.random() * 15) + 1}`);
+        const generatedToken = Math.floor(Math.random() * 15) + 1;
+        setToken(generatedToken);
+        setBooking({
+            service,
+            time,
+            date,
+            token: generatedToken
+        });
     };
 
     return (
@@ -25,7 +33,6 @@ function Services() {
             </div>
             <div className="services-content">
                 <div className="services-list">
-                    
                     <h2>General Consultation</h2>
                     <p>Get expert advice and diagnosis from our experienced doctors.</p>
                     <h2>Specialist Consultations</h2>
@@ -38,9 +45,9 @@ function Services() {
                 <div className="services-token">
                     <h2>Token Booking</h2>
                     <p>Book your appointment token online for a hassle-free experience.</p>
-                    <form>
+                    <form onSubmit={(e) => e.preventDefault()}>
                         <label htmlFor="service">Select Service:</label>
-                        <select id="service" name="service">
+                        <select id="service" name="service" value={service} onChange={(e)=> setService(e.target.value)}>
                             <option value="general consultation">General Consultation</option>
                             <option value="specialist consultation">Specialist Consultation</option>
                             <option value="diagnostic services">Diagnostic Services</option>
@@ -48,28 +55,28 @@ function Services() {
                         </select>
                         <br />
                         <br />
-                         <label htmlFor="time">Select Time Slot:</label>
-                        <select id="time" name="time">
+                        <label htmlFor="time">Select Time Slot:</label>
+                        <select id="time" name="time" value={time} onChange={(e)=> setTime(e.target.value)}>
                             <option value="morning">Morning (9 AM - 12 PM)</option>
                             <option value="afternoon">Afternoon (1 PM - 4 PM)</option>
                             <option value="evening">Evening (5 PM - 8 PM)</option>
                         </select>
                         <br />
                         <br />
-                         <label htmlFor="date">Select Day:</label>
-                        <select id="date" name="date">
+                        <label htmlFor="date">Select Day:</label>
+                        <select id="date" name="date" value={date} onChange={(e)=> setDate(e.target.value)}>
                             <option value="today">Today</option>
                             <option value="tomorrow">Tomorrow</option>
                         </select>
-                    </form> 
-                    <br />
-                    <button className="book-token-button"
-                    onClick={handleOnClick}>
-                        Generate Token
-                    </button>
-                    <br />
-                    <br />
-                    {token &&(<div className="token-info" >Your token number is: {token} for {service} on {date} during {time}.</div>)}  
+                        <br />
+                        <br />
+                        <button type="button"
+                            className="book-token-button"
+                            onClick={handleOnClick}>
+                            Generate Token
+                        </button>
+                    </form>
+                    {booking && (<div className="token-info" >{name}, Your token number is: {booking.token} for {booking.service} on {booking.date} during {booking.time}.</div>)}
                     <br />
                 </div>
             </div>

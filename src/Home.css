@@ -1,12 +1,37 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 98vh;
+    background-image: url("./assets/BG_1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .home-content {
     text-align: center;
-    margin-top: 50px;
+    /* margin-top: 50px auto; */
     font-family: Arial, sans-serif;
     font-size: medium;
     line-height: 1.6;
     font-size: large;
+    box-sizing: border-box;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(206, 227, 240, 0.6); /* semi-transparent background */
+    border-radius: 10px;
 }
 
+.home-heading {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 70px; /* match navbar height */
+}
 
 /* body {
   background-image: url("./src/assets/BG_1.jpg");

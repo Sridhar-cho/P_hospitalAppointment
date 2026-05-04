@@ -1,14 +1,23 @@
-nav {
-    background-color: #9e69cf;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.App {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 98vh;
+  background-image: url("./assets/BG_1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
-  .intro {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
-  }
+.intro {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: medium;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(206, 227, 240, 0.6);/* semi-transparent background */
+  border-radius: 10px;
+}

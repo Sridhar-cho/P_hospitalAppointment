@@ -1,6 +1,7 @@
 .services-heading {
     text-align: center;
     margin-top: 50px;
+    padding-top: 70px; /* match navbar height */
 }
 
 .services-content {
@@ -16,6 +17,7 @@
     line-height: 1.6;
     font-size: large;
     padding: 30px;
+    border-radius: 5%;
 }
 
 button {
@@ -36,5 +38,24 @@ button:hover {
     margin-top: 20px;
     font-weight: bold;
     color: #410b72;
-    background-color: aliceblue;
+    background-color: rgb(196, 214, 229);
+}
+
+.services-list 
+.services-token {
+    margin: 20px;
+    border-radius: 30px;
+}
+
+.services-list h2 {
+    color: #9e69cf;
+}
+
+.services-token {
+    background-color: #f0e6f7;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    height: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

@@ -1,34 +1,68 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+
+import Home from "./Home";
+import Services from "./Services";
+import Exit from "./Exit";
 import "./App.css";
 
 function App() {
+  const [name, setName] = useState(() => {
+    return localStorage.getItem("UserName") || "";
+  });
   const navigate = useNavigate();
-  const [name, setName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/Home"); // opens Home.jsx
+    navigate("/Home");
   };
 
+useEffect(() => { if(name) {
+  localStorage.setItem("UserName", name);
+}
+}, [name]);
+
+function handleExit() {
+  localStorage.removeItem("UserName");
+  setName("");
+  navigate("/");
+}
+
   return (
-    <div className="intro">
-      <h1>Healthcare simplified for you...</h1>
+    <Routes>
+      {/* INTRO / LOGIN PAGE */}
+      <Route path="/"
+        element={
+          <div className="App">
+            <div className="intro">
+              <h1>Healthcare simplified for you...</h1>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter your name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  placeholder="Enter your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
 
-        <button type="submit">Submit</button>
-      </form>
+                <button type="submit">ENTER</button>
+              </form>
 
-      <p>Book your appointment today!</p>
-    </div>
+              <p>Book your appointment today!</p>
+            </div>
+          </div>
+        }
+      />
+
+      {/* HOME PAGE */}
+      <Route path="/Home" element={<Home name={name} />} />
+
+      {/* SERVICES PAGE */}
+      <Route path="/Services" element={<Services name={name} />} />
+      {/* EXIT PAGE */}
+      <Route path="/Exit" element={<Exit onExit={handleExit} />} />
+    </Routes>
   );
 }
 
