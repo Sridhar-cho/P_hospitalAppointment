@@ -19,13 +19,15 @@ function App() {
 
 useEffect(() => { if(name) {
   localStorage.setItem("UserName", name);
+} else {
+  localStorage.removeItem("UserName");
 }
 }, [name]);
 
 function handleExit() {
   localStorage.removeItem("UserName");
   setName("");
-  navigate("/");
+  navigate("/", { replace: true });
 }
 
   return (
