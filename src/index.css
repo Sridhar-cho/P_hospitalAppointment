@@ -1,0 +1,13 @@
+* {
+  background-color: aquamarine;
+}
+
+
+body {
+  margin: 0;
+  padding-top: 70px; /* match navbar height */
+}
+.home-heading {
+  text-align: center;
+  margin-top: 50px;
+}
