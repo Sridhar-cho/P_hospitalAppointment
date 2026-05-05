@@ -15,6 +15,9 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate("/Home");
+    //navigate() changes the URL
+    // Route checks the URL path
+    // Route renders the element for that path
   };
 
 useEffect(() => { if(name) {
