@@ -28,6 +28,9 @@ function handleExit() {
   localStorage.removeItem("UserName");
   setName("");
   navigate("/", { replace: true });
+  // without replace: true -- history will be / → /Home → /Services → /Exit → /
+  // with replace: true -- history will be / → /Home → /Services → /
+  // you can not go back to EXIT - replace: true only removes ONE entry from browser history — not all previous pages. Replace the current page in history with /
 }
 
   return (
@@ -58,10 +61,19 @@ function handleExit() {
       />
 
       {/* HOME PAGE */}
-      <Route path="/Home" element={<Home name={name} />} />
-
+      <Route path="/Home" element={name ? <Home name={name} /> : <Navigate to="/" />} />
       {/* SERVICES PAGE */}
-      <Route path="/Services" element={<Services name={name} />} />
+      <Route path="/Services" element={name ? <Services name={name} /> : <Navigate to="/" />} />
+      {/* 
+      To stop users from seeing Home/Services after Exit, protect routes (conditional element rendering)
+
+      if name is empty (logged out state) 
+      user goes back the previous page, app immediately redirects to / as the name is false(empty)
+
+      replace: true cleans the last step.
+      Route protection blocks access.
+      */}
+
       {/* EXIT PAGE */}
       <Route path="/Exit" element={<Exit onExit={handleExit} />} />
     </Routes>
