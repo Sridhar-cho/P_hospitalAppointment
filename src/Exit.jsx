@@ -5,7 +5,7 @@ function Exit({ onExit }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    onExit();          // clear name + localStorage
+    onExit();          // runs the function handleExit inside App
     navigate("/", { replace: true });
   }, []);
 
