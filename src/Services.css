@@ -59,3 +59,8 @@ button:hover {
     height: 400px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+select {
+    padding: 7px;
+    font-size: 15px;
+}

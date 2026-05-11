@@ -21,3 +21,8 @@
   background: rgba(206, 227, 240, 0.6);/* semi-transparent background */
   border-radius: 10px;
 }
+
+input {
+  padding: 10px;
+  font-size: 15px;
+}
